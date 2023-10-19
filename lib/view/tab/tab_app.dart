@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:book/new/newScreen.dart';
-import 'model/book.dart';
+import 'package:book/view/new/new_screen.dart';
+import '../../model/book.dart';
 import '/services/networkServices.dart';
-import 'search/searchScreen.dart';
+import '../search/search_screen.dart';
 
 void greet(String name) {
   print("Hello, $name!");

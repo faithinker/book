@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../model/book.dart';
-import 'package:book/new/newTile.dart';
+import '../../model/book.dart';
+import 'package:book/view/new/new_tile.dart';
 
 class NewScreen extends StatelessWidget {
   final List<Book> bookList;

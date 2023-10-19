@@ -2,9 +2,9 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '/model/book.dart';
-import '../services/networkServices.dart';
+import '../../services/networkServices.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'detailScreen.dart';
+import 'detail_screen.dart';
 
 // https://velog.io/@sht-3756/Flutter-클릭을-방지하는-위젯
 

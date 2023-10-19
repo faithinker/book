@@ -1,8 +1,8 @@
-import 'package:book/search/searchTile.dart';
+import 'package:book/view/search/search_tile.dart';
 import 'package:book/services/networkServices.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../model/book.dart';
+import '../../model/book.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

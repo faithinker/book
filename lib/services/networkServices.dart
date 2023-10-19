@@ -1,5 +1,3 @@
-import 'package:book/New/detailScreen.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import '../model/book.dart';

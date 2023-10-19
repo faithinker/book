@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../model/book.dart';
+import '../../model/book.dart';
 import 'package:book/services/networkServices.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:book/new/detailScreen.dart';
+import 'package:book/view/new/detail_screen.dart';
 
 class SearchTile extends StatefulWidget {
   final Book book;
