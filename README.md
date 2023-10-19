@@ -1,7 +1,8 @@
 # book 샘플 프로젝트
 
-> lib : Dart 폴더
-> seminar > PPT 세미나 발표 자료
+lib : Dart 폴더
+
+seminar > PPT 세미나 발표 자료
 
 
 ## 실행 방법
