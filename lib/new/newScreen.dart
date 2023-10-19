@@ -9,7 +9,7 @@ class NewScreen extends StatelessWidget {
     super.key,
     required this.bookList,
   });
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

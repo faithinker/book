@@ -28,10 +28,11 @@ class _SearchScreen extends State<SearchScreen> {
   void initState() {
     super.initState();
     _textController = TextEditingController();
-    _scrollController.addListener(_scrollListener);
+
     _textController.addListener(() {
       if (_textController.text.isNotEmpty && books.isEmpty) {
         setState(() {
+          _scrollListener();
           hiddenNoResultText = true;
         });
       }
@@ -97,10 +98,6 @@ class _SearchScreen extends State<SearchScreen> {
               controller: _textController,
               placeholder: '검색어를 입력해보세요.',
               onChanged: (value) {},
-              /* CupertinoSearchTextField의 우측 clear 아이콘을 눌렀을 때,
-               이벤트를 감지하고 싶지만 Dart에서 제공하지 않는다.
-               따라서 Custom clear 버튼을 만들고 버튼을 누를때 원하는 동작을 수행해야 한다.
-              */
               onSubmitted: (String value) async {
                 page = 1;
                 query = value;
@@ -112,7 +109,8 @@ class _SearchScreen extends State<SearchScreen> {
                     int remainder = totalPage % 10 == 0 ? 0 : 1;
                     int quotient = totalPage ~/ 10;
                     totalPage = quotient + remainder;
-                    print('fetchSearch Result: $page, $totalPage ${value.books.length}');
+                    print(
+                        'fetchSearch Result: $page, $totalPage ${value.books.length}');
                   });
                 });
               },

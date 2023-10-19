@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import '../model/book.dart';
 import 'package:book/services/networkServices.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:book/new/detailScreen.dart';
 
 class SearchTile extends StatefulWidget {
   final Book book;
 
-  SearchTile({
+  const SearchTile({
+    super.key,
     required this.book,
   });
 
@@ -16,7 +18,6 @@ class SearchTile extends StatefulWidget {
 }
 
 class _SearchTile extends State<SearchTile> {
-
   bool _isButtonPressed = false;
 
   Future<void> _handleOnTap(BuildContext context) async {
@@ -24,9 +25,15 @@ class _SearchTile extends State<SearchTile> {
 
     try {
       _isButtonPressed = true;
-      await NetworkServices.fetchBookDetail(context, widget.book.isbn13);
+      final result = await NetworkServices.fetchBookDetail(widget.book.isbn13);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => DetailScreen(bookDetail: result)),
+      );
     } catch (e) {
-      Fluttertoast.showToast(msg: 'Error occurred. ${e}');
+      Fluttertoast.showToast(msg: 'Error occurred. $e');
     } finally {
       _isButtonPressed = false;
     }
@@ -35,7 +42,7 @@ class _SearchTile extends State<SearchTile> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => { _handleOnTap(context) },
+      onTap: () => {_handleOnTap(context)},
       child: Container(
         child: Row(
           children: [
@@ -46,24 +53,26 @@ class _SearchTile extends State<SearchTile> {
                 height: 100,
               ),
             ),
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DefaultTextStyle(
                     style: CupertinoTheme.of(context).textTheme.textStyle,
+                    overflow: TextOverflow.ellipsis,
                     child: Text(
                       widget.book.title,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                   DefaultTextStyle(
-                    style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                      fontSize: 14.0,
-                      color: CupertinoColors.secondaryLabel.resolveFrom(context),
-                    ),
+                    style:
+                        CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                              fontSize: 14.0,
+                              color: CupertinoColors.secondaryLabel
+                                  .resolveFrom(context),
+                            ),
                     child: Text(
                       widget.book.subtitle,
                       overflow: TextOverflow.ellipsis,
@@ -73,18 +82,16 @@ class _SearchTile extends State<SearchTile> {
                     widget.book.isbn13,
                   ),
                   Text(
-                    '${widget.book.price}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),
+                    widget.book.price,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SelectableText(
                     widget.book.url,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.blueAccent,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

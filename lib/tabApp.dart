@@ -4,6 +4,9 @@ import 'model/book.dart';
 import '/services/networkServices.dart';
 import 'search/searchScreen.dart';
 
+void greet(String name) {
+  print("Hello, $name!");
+}
 
 class TabApp extends StatefulWidget {
   const TabApp({super.key});
@@ -26,6 +29,7 @@ class _TabAppState extends State<TabApp> {
         _book = value;
         loading = false;
       });
+      // greet('joohyp');
     });
   }
 
@@ -67,4 +71,3 @@ Widget _getPage(int index, List<Book> bookList) {
       return Container();
   }
 }
-

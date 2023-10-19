@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '/model/book.dart';
 import '../services/networkServices.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'detailScreen.dart';
 
 // https://velog.io/@sht-3756/Flutter-클릭을-방지하는-위젯
 
@@ -27,7 +28,13 @@ class _NewTileState extends State<NewTile> {
 
     try {
       _isButtonPressed = true;
-      await NetworkServices.fetchBookDetail(context, widget.book.isbn13);
+      final result = await NetworkServices.fetchBookDetail(widget.book.isbn13);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => DetailScreen(bookDetail: result)),
+      );
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error occurred. $e');
     } finally {
